@@ -1,0 +1,30 @@
+<div class="col-lg-3">
+                    <div class="product-item">
+                        <div>
+                            <a href="{% url 'product' product_image.product.id %}">
+                                <img src="{{ product_image.image.url }}" class="img-responsive img-thumbnail"> <!--Прописываем ссылку на вывод картинки и также в конце пишем .url. Этот тег позволяет сразу закрепить за картинкой ссылку 
+                                на переход на нужную страницу-->
+                            </a>    
+                        </div>
+                        {% if product_image.product.discount %} <!--если есть скидка отрисовываем её -->
+                            <div class="discount-container">
+                                <span>
+                                    {{ product_image.product.discount }} %
+                                </span>
+                            </div>
+                        {% endif %} 
+                        <h4>{{ product_image.product.name }}</h4>
+                        <p>{{ product_image.product.description|truncatechars_html:70 }}</p> <!-- использование данного тега truncatechars.html предупреждает выход текста за границы дива -->
+                        <div>
+                            {{ product_image.product.price }} UAH
+                        </div>
+
+                        <div class="add-to-card-btn">
+                        <form action="{% url 'product' product_image.product.id %}">
+                            <button class="btn btn-success">
+                                 Перейти к пректу
+                            </button>
+                        </form>    
+                        </div>
+                    </div>
+</div>
